@@ -1,6 +1,6 @@
 ﻿// UsingEntityFramework, Martin Qvarnström SUT22
 // Interacting with a database through Entity Framework
-// AddLogic.cs, where add data to DB type logic is handeled
+// AddLogic.cs, where add data to DB type logic is handled
 
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace UsingEntityFramework
 {
     internal class AddLogic
     {
-        internal static void AddStaff()
+        internal static void AddStudent()
         {
             Console.Clear();
             Console.WriteLine("Add a new member to the staff:\n");
@@ -29,19 +29,19 @@ namespace UsingEntityFramework
             string email = Console.ReadLine();
             Console.Write("Enter cellphone number: ");
             string phone = Console.ReadLine();
-            Console.WriteLine("\nAvailable staff roles:");
+            Console.WriteLine("\nAvailable classes:");
 
-            // List and save all available staff roles in dictonary
-            Dictionary<int, string> availableRoles = ListLogic.ListAllStaffRoles();
+            // List and save all available classes in dictonary
+            Dictionary<int, string> availableClasses = ListLogic.ListClasses();
 
             // Loop with TryParse to prevent user crashing app
-            bool parseRoleSuccess;
-            int userRoleInput;
+            bool parseClassSuccess;
+            int userClassInput;
             do
             {
-                Console.Write("Enter a valid staff role id: ");
-                parseRoleSuccess = int.TryParse(Console.ReadLine(), out userRoleInput);
-            } while (!parseRoleSuccess || !availableRoles.ContainsKey(userRoleInput));
+                Console.Write("Enter a valid class id: ");
+                parseClassSuccess = int.TryParse(Console.ReadLine(), out userClassInput);
+            } while (!parseClassSuccess || !availableClasses.ContainsKey(userClassInput));
 
             Console.WriteLine("\nAvailable adresses:");
 
@@ -57,20 +57,20 @@ namespace UsingEntityFramework
             } while (!parseAdressSuccess || !availableAdresses.ContainsKey(userAdressInput));
 
             Console.WriteLine($"\nName: {fName} {lName}\nPersonal number: {pNumber}\nEmail: {email}\nPhone: " +
-                $"{phone}\nStaff role: {availableRoles[userRoleInput]}\nAdress:\n{availableAdresses[userAdressInput]}");
+                $"{phone}\nStaff role: {availableClasses[userClassInput]}\nAdress:\n{availableAdresses[userAdressInput]}");
 
             string userInput;
             do
             {
-                Console.Write($"\nSave this new staff member to database? (y/n)");
+                Console.Write($"\nSave this new student to database? (y/n)");
                 userInput = Console.ReadLine().ToLower();
             } while (userInput != "y" && userInput != "n");
 
             if (userInput == "y")
             {
-                Staff newStaff = new Staff(fName, lName, pNumber, email, phone, userRoleInput, userAdressInput);
+                Student newStudent = new Student(fName, lName, pNumber, email, phone, userClassInput, userAdressInput);
                 FbgGymnDbContext context = new FbgGymnDbContext();
-                context.Staff.Add(newStaff);
+                context.Students.Add(newStudent);
 
                 try
                 {
@@ -83,7 +83,7 @@ namespace UsingEntityFramework
                     Program.RunMainMenu();
                 }
                 
-                Console.WriteLine("Staff member added, press a key to return to main menu.");
+                Console.WriteLine("Student added, press a key to return to main menu.");
                 Console.ReadKey();
                 Program.RunMainMenu();
             }

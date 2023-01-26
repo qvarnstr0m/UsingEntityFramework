@@ -29,4 +29,20 @@ public partial class Student
     public virtual Class FkClass { get; set; } = null!;
 
     public virtual ICollection<Grade> Grades { get; } = new List<Grade>();
+
+    public Student()
+    {
+
+    }
+
+    public Student(string firstName, string lastName, string pNumber, string email, string phone, int classId, int adressId)
+    {
+        StudentFirstname = firstName;
+        StudentLastname = lastName;
+        StudentPersonalnumber = pNumber;
+        StudentEmail = email;
+        StudentCellphone = phone;
+        FkClassId = classId;
+        FkAdressId = adressId;
+    }
 }

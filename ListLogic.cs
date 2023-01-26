@@ -1,6 +1,6 @@
 ﻿// UsingEntityFramework, Martin Qvarnström SUT22
 // Interacting with a database through Entity Framework
-// ListLogic.cs, where list data from DB type logic is handeled
+// ListLogic.cs, where list data from DB type logic is handled
 
 using System;
 using System.Collections.Generic;
@@ -37,37 +37,85 @@ namespace UsingEntityFramework
 
             FbgGymnDbContext context = new FbgGymnDbContext();
 
-            // Some repetion of code below, should try to fix this
+            // Some repetition of code below, could maybe avoided by using sql views or stored procedures
             switch (menuInput)
             {
                 case 1:
                     var studentsFirstAsc = from student in context.Students
+                                           join adress in context.Adresses
+                                           on student.FkAdressId equals adress.AdressId
+                                           join studentClass in context.Classes
+                                           on student.FkClassId equals studentClass.ClassId
                                            orderby student.StudentFirstname ascending
-                                           select student;
+                                           select new
+                                           {
+                                               fullName = $"{student.StudentFirstname} {student.StudentLastname}",
+                                               adress = $"{adress.AdressStreet}\n{adress.AdressPostalcode} {adress.AdressCity}",
+                                               personalNumber = student.StudentPersonalnumber,
+                                               phone = student.StudentCellphone,
+                                               email = student.StudentEmail,
+                                               studentClass = studentClass.ClassName
+                                           };
 
                     ListAllStudents(studentsFirstAsc);
                     break;
 
                 case 2:
                     var studentsFirstDesc = from student in context.Students
+                                            join adress in context.Adresses
+                                            on student.FkAdressId equals adress.AdressId
+                                            join studentClass in context.Classes
+                                            on student.FkClassId equals studentClass.ClassId
                                             orderby student.StudentFirstname descending
-                                            select student;
+                                            select new
+                                            {
+                                                fullName = $"{student.StudentFirstname} {student.StudentLastname}",
+                                                adress = $"{adress.AdressStreet}\n{adress.AdressPostalcode} {adress.AdressCity}",
+                                                personalNumber = student.StudentPersonalnumber,
+                                                phone = student.StudentCellphone,
+                                                email = student.StudentEmail,
+                                                studentClass = studentClass.ClassName
+                                            };
 
                     ListAllStudents(studentsFirstDesc);
                     break;
 
                 case 3:
                     var studentsLastAsc = from student in context.Students
+                                          join adress in context.Adresses
+                                          on student.FkAdressId equals adress.AdressId
+                                          join studentClass in context.Classes
+                                          on student.FkClassId equals studentClass.ClassId
                                           orderby student.StudentLastname ascending
-                                          select student;
+                                          select new
+                                          {
+                                              fullName = $"{student.StudentFirstname} {student.StudentLastname}",
+                                              adress = $"{adress.AdressStreet}\n{adress.AdressPostalcode} {adress.AdressCity}",
+                                              personalNumber = student.StudentPersonalnumber,
+                                              phone = student.StudentCellphone,
+                                              email = student.StudentEmail,
+                                              studentClass = studentClass.ClassName
+                                          };
 
                     ListAllStudents(studentsLastAsc);
                     break;
 
                 case 4:
                     var studentsLastDesc = from student in context.Students
+                                           join adress in context.Adresses
+                                           on student.FkAdressId equals adress.AdressId
+                                           join studentClass in context.Classes
+                                           on student.FkClassId equals studentClass.ClassId
                                            orderby student.StudentLastname descending
-                                           select student;
+                                           select new
+                                           {
+                                               fullName = $"{student.StudentFirstname} {student.StudentLastname}",
+                                               adress = $"{adress.AdressStreet}\n{adress.AdressPostalcode} {adress.AdressCity}",
+                                               personalNumber = student.StudentPersonalnumber,
+                                               phone = student.StudentCellphone,
+                                               email = student.StudentEmail,
+                                               studentClass = studentClass.ClassName
+                                           };
 
                     ListAllStudents(studentsLastDesc);
                     break;
@@ -86,16 +134,15 @@ namespace UsingEntityFramework
             Program.RunMainMenu();
         }
 
-        internal static void ListAllStudents(IOrderedQueryable<Student> studentList)
+        internal static void ListAllStudents(IQueryable<dynamic> studentList)
         {
-            foreach (var student in studentList)
+            foreach (dynamic item in studentList)
             {
-                Console.WriteLine($"Name: {student.StudentFirstname} {student.StudentLastname}\nPersonal number: " +
-                    $"{student.StudentPersonalnumber}\nPhone: {student.StudentCellphone}\n");
+                Console.WriteLine($"Name: {item.fullName}\nAdress:\n{item.adress}\nClass: {item.studentClass}\nPersonal number: {item.personalNumber}\nCellphone: {item.phone}\nEmail: {item.email}\n");
             }
         }
 
-        internal static void ListStudentsIsClass()
+        internal static void ListStudentsInClass()
         {
             // List all available classes and store list of available class id's
             List<int> availableClassIds = ListAllClasses();
@@ -151,24 +198,24 @@ namespace UsingEntityFramework
             return classIdList;
         }
 
-        internal static Dictionary<int, string> ListAllStaffRoles()
+        internal static Dictionary<int, string> ListClasses()
         {
             //Dictionary to hold available classes
-            Dictionary<int, string> staffRoleDict = new Dictionary<int, string>();
+            Dictionary<int, string> classDict = new Dictionary<int, string>();
 
             FbgGymnDbContext context = new FbgGymnDbContext();
 
-            var availableStaffRoles = from staffRoles in context.Staffroles
-                                   orderby staffRoles.StaffroleId ascending
-                                   select staffRoles;
+            var availableClasses = from classes in context.Classes
+                                   orderby classes.ClassId ascending
+                                   select classes;
 
-            foreach (var currentRole in availableStaffRoles)
+            foreach (var currentClass in availableClasses)
             {
-                staffRoleDict.Add(currentRole.StaffroleId, currentRole.StaffroleName);
-                Console.WriteLine($"Id: {currentRole.StaffroleId} Role: {currentRole.StaffroleName}\n");
+                classDict.Add(currentClass.ClassId, currentClass.ClassName);
+                Console.WriteLine($"Id: {currentClass.ClassId} Class: {currentClass.ClassName}\n");
             }
 
-            return staffRoleDict;
+            return classDict;
         }
 
         internal static Dictionary<int, string> ListAdresses()

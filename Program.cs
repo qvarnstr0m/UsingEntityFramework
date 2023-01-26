@@ -1,6 +1,6 @@
 ﻿// UsingEntityFramework, Martin Qvarnström SUT22
 // Interacting with a database through Entity Framework
-// Program.cs, where app runs and menu logic is handeled
+// Program.cs, where app runs and menu logic is handled
 
 using UsingEntityFramework.Models;
 
@@ -19,7 +19,7 @@ namespace UsingEntityFramework
             Console.WriteLine("Welcome to school!\n\nMenu:");
             Console.WriteLine("1. List all students");
             Console.WriteLine("2. List all students in a certain class");
-            Console.WriteLine("3. Add new staff");
+            Console.WriteLine("3. Add new student");
             Console.WriteLine("4. Exit");
             Console.WriteLine();
 
@@ -38,10 +38,10 @@ namespace UsingEntityFramework
                     ListLogic.ListAllStudentsMenu();
                     break;
                 case 2:
-                    ListLogic.ListStudentsIsClass();
+                    ListLogic.ListStudentsInClass();
                     break;
                 case 3:
-                    AddLogic.AddStaff();
+                    AddLogic.AddStudent();
                     break;
                 case 4:
                     Console.Write("Thank you for using this app, press a key to terminate.");
