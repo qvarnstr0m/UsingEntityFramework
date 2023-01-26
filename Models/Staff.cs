@@ -28,4 +28,20 @@ public partial class Staff
     public virtual Staffrole FkStaffrole { get; set; } = null!;
 
     public virtual ICollection<Grade> Grades { get; } = new List<Grade>();
+
+    public Staff()
+    {
+
+    }
+
+    public Staff(string firstName, string lastName, string pNumber, string email, string phone, int staffRoleId, int adressId)
+    {
+        StaffFirstname = firstName;
+        StaffLastname = lastName;
+        StaffPersonalnumber = pNumber;
+        StaffEmail = email;
+        StaffCellphone = phone;
+        FkStaffroleId = staffRoleId;
+        FkAdressId = adressId;
+    }
 }

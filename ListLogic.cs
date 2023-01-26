@@ -150,5 +150,45 @@ namespace UsingEntityFramework
 
             return classIdList;
         }
+
+        internal static Dictionary<int, string> ListAllStaffRoles()
+        {
+            //Dictionary to hold available classes
+            Dictionary<int, string> staffRoleDict = new Dictionary<int, string>();
+
+            FbgGymnDbContext context = new FbgGymnDbContext();
+
+            var availableStaffRoles = from staffRoles in context.Staffroles
+                                   orderby staffRoles.StaffroleId ascending
+                                   select staffRoles;
+
+            foreach (var currentRole in availableStaffRoles)
+            {
+                staffRoleDict.Add(currentRole.StaffroleId, currentRole.StaffroleName);
+                Console.WriteLine($"Id: {currentRole.StaffroleId} Role: {currentRole.StaffroleName}\n");
+            }
+
+            return staffRoleDict;
+        }
+
+        internal static Dictionary<int, string> ListAdresses()
+        {
+            // Dictionary to hold available adresses
+            Dictionary<int, string> adressDict = new Dictionary<int, string>();
+
+            FbgGymnDbContext context = new FbgGymnDbContext();
+
+            var availableAdresses = from adresses in context.Adresses
+                                      orderby adresses.AdressId ascending
+                                      select adresses;
+
+            foreach (var adress in availableAdresses)
+            {
+                adressDict.Add(adress.AdressId, $"{adress.AdressStreet}\n{adress.AdressPostalcode} {adress.AdressCity}");
+                Console.WriteLine($"Adress id: {adress.AdressId}\n{adress.AdressStreet}\n{adress.AdressPostalcode} {adress.AdressCity}\n");
+            }
+
+            return adressDict;
+        }
     }
 }

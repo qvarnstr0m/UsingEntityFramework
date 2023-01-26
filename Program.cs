@@ -20,11 +20,7 @@ namespace UsingEntityFramework
             Console.WriteLine("1. List all students");
             Console.WriteLine("2. List all students in a certain class");
             Console.WriteLine("3. Add new staff");
-            Console.WriteLine("4. List staff");
-            Console.WriteLine("5. List grades set in the last month");
-            Console.WriteLine("6. List grade statistics from all courses");
-            Console.WriteLine("7. Add new student");
-            Console.WriteLine("8. Exit");
+            Console.WriteLine("4. Exit");
             Console.WriteLine();
 
             // Loop with TryParse to prevent user crashing app
@@ -34,7 +30,7 @@ namespace UsingEntityFramework
             {
                 Console.Write("Enter a valid number: ");
                 parseSuccess = int.TryParse(Console.ReadLine(), out menuInput);
-            } while (!parseSuccess || menuInput < 1 || menuInput > 8);
+            } while (!parseSuccess || menuInput < 1 || menuInput > 4);
 
             switch (menuInput)
             {
@@ -45,18 +41,14 @@ namespace UsingEntityFramework
                     ListLogic.ListStudentsIsClass();
                     break;
                 case 3:
+                    AddLogic.AddStaff();
                     break;
                 case 4:
+                    Console.Write("Thank you for using this app, press a key to terminate.");
+                    Console.ReadKey();
+                    Environment.Exit(0);
                     break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    break;
-                case 8:
                 default:
-
                     break;
             }
         }
