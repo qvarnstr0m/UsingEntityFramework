@@ -42,6 +42,7 @@ namespace UsingEntityFramework
                     ListLogic.ListAllStudentsMenu();
                     break;
                 case 2:
+                    ListLogic.ListStudentsIsClass();
                     break;
                 case 3:
                     break;
