@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace UsingEntityFramework.Models;
 
@@ -12,7 +11,7 @@ public partial class CoursesStudent
 
     public int FkStudentId { get; set; }
 
-    public virtual Course FkCourse { get; set; } = null!;
+    public virtual Course FkCourse { get; set; }
 
-    public virtual Student FkStudent { get; set; } = null!;
+    public virtual Student FkStudent { get; set; }
 }

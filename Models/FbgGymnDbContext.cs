@@ -31,6 +31,10 @@ public partial class FbgGymnDbContext : DbContext
 
     public virtual DbSet<Student> Students { get; set; }
 
+    public virtual DbSet<VwCourseGradesStatistic> VwCourseGradesStatistics { get; set; }
+
+    public virtual DbSet<VwLastMonthGrade> VwLastMonthGrades { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source = THINKPAD; Initial Catalog=FalkenbergsGymnasieskola;Integrated Security = True; TrustServerCertificate = True");
@@ -73,6 +77,7 @@ public partial class FbgGymnDbContext : DbContext
                 .HasColumnType("date")
                 .HasColumnName("Course_enddate");
             entity.Property(e => e.CourseName)
+                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("Course_name");
             entity.Property(e => e.CourseStartdate)
@@ -121,23 +126,9 @@ public partial class FbgGymnDbContext : DbContext
                 .HasColumnType("date")
                 .HasColumnName("Grade_date");
             entity.Property(e => e.GradeGrade)
+                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("Grade_grade");
-
-            entity.HasOne(d => d.FkCourse).WithMany(p => p.Grades)
-                .HasForeignKey(d => d.FkCourseId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Grades__FK_Cours__3C69FB99");
-
-            entity.HasOne(d => d.FkStaff).WithMany(p => p.Grades)
-                .HasForeignKey(d => d.FkStaffId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Grades__FK_Staff__3B75D760");
-
-            entity.HasOne(d => d.FkStudent).WithMany(p => p.Grades)
-                .HasForeignKey(d => d.FkStudentId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Grades__FK_Stude__3A81B327");
         });
 
         modelBuilder.Entity<Staff>(entity =>
@@ -154,12 +145,15 @@ public partial class FbgGymnDbContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("Staff_email");
             entity.Property(e => e.StaffFirstname)
+                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("Staff_firstname");
             entity.Property(e => e.StaffLastname)
+                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("Staff_lastname");
             entity.Property(e => e.StaffPersonalnumber)
+                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("Staff_personalnumber");
 
@@ -187,6 +181,8 @@ public partial class FbgGymnDbContext : DbContext
         modelBuilder.Entity<Student>(entity =>
         {
             entity.HasKey(e => e.StudentId).HasName("PK__Students__F04C9B60D283F645");
+
+            entity.HasIndex(e => e.StudentPersonalnumber, "UQ__Students__F075CA3350A9D16B").IsUnique();
 
             entity.Property(e => e.StudentId).HasColumnName("Student_id");
             entity.Property(e => e.FkAdressId).HasColumnName("FK_Adress_id");
@@ -216,6 +212,48 @@ public partial class FbgGymnDbContext : DbContext
                 .HasForeignKey(d => d.FkClassId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Students__FK_Cla__36B12243");
+        });
+
+        modelBuilder.Entity<VwCourseGradesStatistic>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("vw_CourseGradesStatistics");
+
+            entity.Property(e => e.BästaBetyg)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("Bästa betyg");
+            entity.Property(e => e.CourseId).HasColumnName("Course_id");
+            entity.Property(e => e.CourseName)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasColumnName("Course_name");
+            entity.Property(e => e.Medelbetyg)
+                .HasMaxLength(3)
+                .IsUnicode(false);
+            entity.Property(e => e.SämstaBetyg)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("Sämsta betyg");
+        });
+
+        modelBuilder.Entity<VwLastMonthGrade>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("vw_LastMonthGrades");
+
+            entity.Property(e => e.Betyg)
+                .IsRequired()
+                .HasMaxLength(50);
+            entity.Property(e => e.Betygsättare)
+                .IsRequired()
+                .HasMaxLength(101);
+            entity.Property(e => e.Kurs)
+                .IsRequired()
+                .HasMaxLength(50);
+            entity.Property(e => e.Namn).HasMaxLength(101);
         });
 
         OnModelCreatingPartial(modelBuilder);

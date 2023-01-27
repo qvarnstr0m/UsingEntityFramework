@@ -7,7 +7,7 @@ public partial class Course
 {
     public int CourseId { get; set; }
 
-    public string CourseName { get; set; } = null!;
+    public string CourseName { get; set; }
 
     public DateTime CourseStartdate { get; set; }
 
@@ -17,7 +17,5 @@ public partial class Course
 
     public virtual ICollection<CoursesStudent> CoursesStudents { get; } = new List<CoursesStudent>();
 
-    public virtual Staff FkStaff { get; set; } = null!;
-
-    public virtual ICollection<Grade> Grades { get; } = new List<Grade>();
+    public virtual Staff FkStaff { get; set; }
 }
