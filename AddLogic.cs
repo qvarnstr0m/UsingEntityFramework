@@ -69,20 +69,11 @@ namespace UsingEntityFramework
             if (userInput == "y")
             {
                 Student newStudent = new Student(fName, lName, pNumber, email, phone, userClassInput, userAdressInput);
-                FbgGymnDbContext context = new FbgGymnDbContext();
-                context.Students.Add(newStudent);
-
-                try
+                using (FbgGymnDbContext context = new FbgGymnDbContext())
                 {
+                    context.Students.Add(newStudent);
                     context.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"Failed to save data, press a key to return to main menu.\nException message:\n{e.Message}");
-                    Console.ReadKey();
-                    Program.RunMainMenu();
-                }
-                
+                };
                 Console.WriteLine("Student added, press a key to return to main menu.");
                 Console.ReadKey();
                 Program.RunMainMenu();
