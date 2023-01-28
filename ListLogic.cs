@@ -60,7 +60,7 @@ namespace UsingEntityFramework
                                                };
 
                         ListAllStudents(studentsFirstAsc);
-                    };
+                    }
                     break;
 
                 case 2:
@@ -83,7 +83,7 @@ namespace UsingEntityFramework
                                                 };
 
                         ListAllStudents(studentsFirstDesc);
-                    };
+                    }
                     break;
 
                 case 3:
@@ -106,7 +106,7 @@ namespace UsingEntityFramework
                                               };
 
                         ListAllStudents(studentsLastAsc);
-                    };
+                    }
                     break;
 
                 case 4:
@@ -129,7 +129,7 @@ namespace UsingEntityFramework
                                                };
 
                         ListAllStudents(studentsLastDesc);
-                    };
+                    }
                     break;
 
                 case 5:
@@ -184,7 +184,7 @@ namespace UsingEntityFramework
                 }
 
                 Console.Write(studentList.Count() > 0 ? "\nAll students listed. Press a key to return to main menu." : "\nNo students in this class. Press a key to return to main menu.");
-            };
+            }
 
             Console.ReadKey();
             Program.RunMainMenu();
@@ -208,7 +208,7 @@ namespace UsingEntityFramework
                     classIdList.Add(currentClass.ClassId);
                     Console.WriteLine($"Class id: {currentClass.ClassId} Class name: {currentClass.ClassName}");
                 }
-            };
+            }
 
             return classIdList;
         }
@@ -229,7 +229,7 @@ namespace UsingEntityFramework
                     classDict.Add(currentClass.ClassId, currentClass.ClassName);
                     Console.WriteLine($"Id: {currentClass.ClassId} Class: {currentClass.ClassName}\n");
                 }
-            };
+            }
 
             return classDict;
         }
@@ -250,9 +250,51 @@ namespace UsingEntityFramework
                     adressDict.Add(adress.AdressId, $"{adress.AdressStreet}\n{adress.AdressPostalcode} {adress.AdressCity}");
                     Console.WriteLine($"Adress id: {adress.AdressId}\n{adress.AdressStreet}\n{adress.AdressPostalcode} {adress.AdressCity}\n");
                 }
-            };
+            }
 
             return adressDict;
+        }
+
+        internal static void ListGradesStatistics()
+        {
+            Console.Clear();
+            Console.WriteLine("Statistics from all courses:\n");
+            using (FbgGymnDbContext context = new FbgGymnDbContext())
+            {
+                var courseStatistics = from statistics in context.VwCourseGradesStatistics
+                                       orderby statistics.CourseName ascending
+                                       select statistics;
+
+                foreach (var statistic in courseStatistics)
+                {
+                    Console.WriteLine($"Course name: {statistic.CourseName} Average grade: {statistic.Medelbetyg} Top grade: {statistic.BästaBetyg} Worst grade: {statistic.SämstaBetyg}\n");
+                }
+
+                Console.WriteLine(courseStatistics.Count() > 0 ? "All courses listed, press a key to return to main menu." : "No courses to list, press a key to return to main menu.");
+            }
+            Console.ReadKey();
+            Program.RunMainMenu();
+        }
+
+        internal static void ListLastMonthGrades()
+        {
+            Console.Clear();
+            Console.WriteLine("Last months grades:\n");
+            using (FbgGymnDbContext context = new FbgGymnDbContext())
+            {
+                var gradesList = from grades in context.VwLastMonthGrades
+                                       orderby grades.Kurs ascending
+                                       select grades;
+
+                foreach (var grade in gradesList)
+                {
+                    Console.WriteLine($"Student: {grade.Namn} Grade: {grade.Betyg} Course: {grade.Kurs} Teacher: {grade.Betygsättare}\n");
+                }
+
+                Console.WriteLine(gradesList.Count() > 0 ? "All grades listed, press a key to return to main menu." : "No grades to list, press a key to return to main menu.");
+            }
+            Console.ReadKey();
+            Program.RunMainMenu();
         }
     }
 }

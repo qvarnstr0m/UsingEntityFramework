@@ -73,7 +73,8 @@ namespace UsingEntityFramework
                 {
                     context.Students.Add(newStudent);
                     context.SaveChanges();
-                };
+                }
+
                 Console.WriteLine("Student added, press a key to return to main menu.");
                 Console.ReadKey();
                 Program.RunMainMenu();
