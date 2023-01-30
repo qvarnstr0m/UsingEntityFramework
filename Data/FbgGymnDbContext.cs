@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using UsingEntityFramework.Models;
 
-namespace UsingEntityFramework.Models;
+namespace UsingEntityFramework.Data;
 
 public partial class FbgGymnDbContext : DbContext
 {
