@@ -26,5 +26,26 @@ namespace UsingEntityFramework.Controllers
             Console.ReadKey();
             MainController.RunMainMenu();
         }
+
+        internal static void ListActiveCourses()
+        {
+            Console.Clear();
+            Console.WriteLine("Currently active courses:\n");
+
+            using (UnitOfWork unitOfWork = new UnitOfWork(new FbgGymnDbContext()))
+            {
+                var activeCourses = unitOfWork.Courses.ListActiveCourses();
+
+                foreach (var course in activeCourses)
+                {
+                    Console.WriteLine($"Course name: {course.CourseName}\nCourse startdate: {course.CourseStartdate}\n");
+                }
+
+                Console.WriteLine(activeCourses.Count() > 0 ? "All courses listed, press a key to return to main menu." : "No courses to list, press a key to return to main menu.");
+            }
+
+            Console.ReadKey();
+            MainController.RunMainMenu();
+        }
     }
 }

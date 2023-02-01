@@ -8,6 +8,7 @@ namespace UsingEntityFramework.Data
         public IStudentRepository Students { get; private set; }
         public IClassRepository Classes { get; private set; }
         public IAdressRepository Adresses { get; private set; }
+        public ICourseRepository Courses { get; private set; }
 
         public UnitOfWork(FbgGymnDbContext context)
         {
@@ -15,6 +16,7 @@ namespace UsingEntityFramework.Data
             Students = new StudentRepository(_context);
             Classes = new ClassRepository(_context);
             Adresses = new AdressRepository(_context);
+            Courses = new CourseRepository(_context);
         }
 
         public void Dispose()

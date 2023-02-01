@@ -11,8 +11,7 @@ namespace UsingEntityFramework.Controllers
 
             using (UnitOfWork unitOfWork = new UnitOfWork(new FbgGymnDbContext()))
             {
-                var availableAdresses = unitOfWork.Adresses.GetAll()
-                    .OrderBy(x => x.AdressId);
+                var availableAdresses = unitOfWork.Adresses.GetAll().OrderBy(x => x.AdressId);
 
                 foreach (var currentAdress in availableAdresses)
                 {

@@ -11,8 +11,7 @@ namespace UsingEntityFramework.Controllers
 
             using (UnitOfWork unitOfWork = new UnitOfWork(new FbgGymnDbContext()))
             {
-                var availableClasses = unitOfWork.Classes.GetAll()
-                    .OrderBy(x => x.ClassId);
+                var availableClasses = unitOfWork.Classes.GetAll().OrderBy(x => x.ClassId);
 
                 foreach (var currentClass in availableClasses)
                 {
