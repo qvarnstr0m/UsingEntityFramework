@@ -8,7 +8,7 @@ public partial class Course
 
     public DateTime CourseStartdate { get; set; }
 
-    public DateTime CourseEnddate { get; set; }
+    public DateTime? CourseEnddate { get; set; }
 
     public int FkStaffId { get; set; }
 

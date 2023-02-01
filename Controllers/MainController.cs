@@ -11,7 +11,8 @@
             Console.WriteLine("3. Add new student");
             Console.WriteLine("4. List statistics from all courses");
             Console.WriteLine("5. List all grades one month back");
-            Console.WriteLine("6. Exit");
+            Console.WriteLine("6. List all active courses");
+            Console.WriteLine("7. Exit");
             Console.WriteLine();
 
             // Loop with TryParse to prevent user crashing app
@@ -41,6 +42,9 @@
                     GradeController.ListLastMonthGrades();
                     break;
                 case 6:
+                    CourseController.ListActiveCourses();
+                    break;
+                case 7:
                     Console.Write("Thank you for using this app, press a key to terminate.");
                     Console.ReadKey();
                     Environment.Exit(0);

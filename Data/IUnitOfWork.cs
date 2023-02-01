@@ -7,6 +7,7 @@ namespace UsingEntityFramework.Data
         IStudentRepository Students { get; }
         IClassRepository Classes { get; }
         IAdressRepository Adresses { get; }
+        ICourseRepository Courses { get; }
         int Save();
     }
 }
