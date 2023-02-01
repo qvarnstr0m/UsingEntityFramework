@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UsingEntityFramework.Data;
+﻿using UsingEntityFramework.Data;
 
 namespace UsingEntityFramework.Controllers
 {
@@ -27,7 +22,7 @@ namespace UsingEntityFramework.Controllers
                 Console.WriteLine(gradesList.Count() > 0 ? "All grades listed, press a key to return to main menu." : "No grades to list, press a key to return to main menu.");
             }
             Console.ReadKey();
-            Controllers.MainController.RunMainMenu();
+            MainController.RunMainMenu();
         }
     }
 }

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UsingEntityFramework.Data;
-using UsingEntityFramework.Models;
-using UsingEntityFramework.Repositories;
-
-namespace UsingEntityFramework.Controllers
+﻿namespace UsingEntityFramework.Controllers
 {
     internal class MainController
     {

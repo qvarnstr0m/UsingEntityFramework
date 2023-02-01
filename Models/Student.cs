@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace UsingEntityFramework.Models;
+﻿namespace UsingEntityFramework.Models;
 
 public partial class Student
 {
