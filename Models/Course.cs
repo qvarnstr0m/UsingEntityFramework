@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace UsingEntityFramework.Models;
+﻿namespace UsingEntityFramework.Models;
 
 public partial class Course
 {

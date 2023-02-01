@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UsingEntityFramework.Data;
+﻿using UsingEntityFramework.Data;
 using UsingEntityFramework.Models;
-using UsingEntityFramework.Repositories;
 
 namespace UsingEntityFramework.Controllers
 {
@@ -33,6 +27,8 @@ namespace UsingEntityFramework.Controllers
             } while (sortOn != "y" && sortOn != "n");
 
             bool sortOnAscending = sortOn == "y" ? true : false;
+
+            Console.WriteLine();
 
             using (UnitOfWork unitOfWork = new UnitOfWork(new FbgGymnDbContext()))
             {
@@ -65,6 +61,7 @@ namespace UsingEntityFramework.Controllers
                 Console.Write("Enter a valid class id: ");
                 parseSuccess = int.TryParse(Console.ReadLine(), out userInput);
             } while (!parseSuccess || !availableClassIds.ContainsKey(userInput));
+            Console.WriteLine();
 
             using (UnitOfWork unitOfWork = new UnitOfWork(new FbgGymnDbContext()))
             {
@@ -138,11 +135,6 @@ namespace UsingEntityFramework.Controllers
             if (userInput == "y")
             {
                 Student newStudent = new Student(fName, lName, pNumber, email, phone, userClassInput, userAdressInput);
-                //using (FbgGymnDbContext context = new FbgGymnDbContext())
-                //{
-                //    context.Students.Add(newStudent);
-                //    context.SaveChanges();
-                //}
 
                 using (UnitOfWork unitOfWork = new UnitOfWork(new FbgGymnDbContext()))
                 {
@@ -158,7 +150,7 @@ namespace UsingEntityFramework.Controllers
             {
                 Console.WriteLine("Data will not be saved, press a key to return to main menu.");
                 Console.ReadKey();
-                Controllers.MainController.RunMainMenu();
+                MainController.RunMainMenu();
             }
         }
     }

@@ -3,9 +3,6 @@
 // Using repository and unit of work pattern
 // Program.cs, where app runs and menu logic is handled
 
-using UsingEntityFramework.Data;
-using UsingEntityFramework.Models;
-
 namespace UsingEntityFramework
 {
     internal class Program
