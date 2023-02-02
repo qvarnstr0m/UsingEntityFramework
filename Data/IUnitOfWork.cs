@@ -8,6 +8,8 @@ namespace UsingEntityFramework.Data
         IClassRepository Classes { get; }
         IAdressRepository Adresses { get; }
         ICourseRepository Courses { get; }
+        IStaffroleRepository Staffroles { get; }
+        IDepartmentRepository Departments { get; }
         int Save();
     }
 }
