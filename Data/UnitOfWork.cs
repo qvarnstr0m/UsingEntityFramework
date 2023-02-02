@@ -1,4 +1,5 @@
-﻿using UsingEntityFramework.Repositories;
+﻿
+using UsingEntityFramework.Repositories;
 
 namespace UsingEntityFramework.Data
 {
@@ -9,6 +10,8 @@ namespace UsingEntityFramework.Data
         public IClassRepository Classes { get; private set; }
         public IAdressRepository Adresses { get; private set; }
         public ICourseRepository Courses { get; private set; }
+        public IStaffroleRepository Staffroles { get; private set; }
+        public IDepartmentRepository Departments { get; private set; }
 
         public UnitOfWork(FbgGymnDbContext context)
         {
@@ -17,6 +20,8 @@ namespace UsingEntityFramework.Data
             Classes = new ClassRepository(_context);
             Adresses = new AdressRepository(_context);
             Courses = new CourseRepository(_context);
+            Staffroles = new StaffroleRepository(_context);
+            Departments = new DepartmentRepository(_context);
         }
 
         public void Dispose()

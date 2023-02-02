@@ -38,7 +38,7 @@ namespace UsingEntityFramework.Controllers
 
                 foreach (var course in activeCourses)
                 {
-                    Console.WriteLine($"Course name: {course.CourseName}\nCourse startdate: {course.CourseStartdate}\n");
+                    Console.WriteLine($"Course name: {course.CourseName}\nCourse startdate: {course.CourseStartdate.ToShortDateString()}\n");
                 }
 
                 Console.WriteLine(activeCourses.Count() > 0 ? "All courses listed, press a key to return to main menu." : "No courses to list, press a key to return to main menu.");

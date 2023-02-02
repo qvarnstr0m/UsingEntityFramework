@@ -1,4 +1,7 @@
-﻿namespace UsingEntityFramework.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace UsingEntityFramework.Models;
 
 public partial class Course
 {
@@ -15,4 +18,6 @@ public partial class Course
     public virtual ICollection<CoursesStudent> CoursesStudents { get; } = new List<CoursesStudent>();
 
     public virtual Staff FkStaff { get; set; }
+
+    public virtual ICollection<Grade> Grades { get; } = new List<Grade>();
 }

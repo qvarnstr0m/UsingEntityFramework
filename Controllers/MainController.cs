@@ -12,7 +12,8 @@
             Console.WriteLine("4. List statistics from all courses");
             Console.WriteLine("5. List all grades one month back");
             Console.WriteLine("6. List all active courses");
-            Console.WriteLine("7. Exit");
+            Console.WriteLine("7. List deparments and number of teachers");
+            Console.WriteLine("8. Exit");
             Console.WriteLine();
 
             // Loop with TryParse to prevent user crashing app
@@ -45,6 +46,9 @@
                     CourseController.ListActiveCourses();
                     break;
                 case 7:
+                    DepartmentController.ListNoDepartmentStaff();
+                    break;
+                case 8:
                     Console.Write("Thank you for using this app, press a key to terminate.");
                     Console.ReadKey();
                     Environment.Exit(0);

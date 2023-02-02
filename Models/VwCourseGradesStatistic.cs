@@ -1,4 +1,7 @@
-﻿namespace UsingEntityFramework.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace UsingEntityFramework.Models;
 
 public partial class VwCourseGradesStatistic
 {

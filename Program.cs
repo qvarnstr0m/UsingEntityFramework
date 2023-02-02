@@ -1,7 +1,7 @@
 ﻿// UsingEntityFramework, Martin Qvarnström SUT22
+// Using Entity Framework, Martin Qvarnström SUT22
 // Interacting with a database through Entity Framework
-// Using repository and unit of work pattern
-// Program.cs, where app runs and menu logic is handled
+// Using repository and unit of work pattern for possible decoupling of Entity Framework
 
 namespace UsingEntityFramework
 {

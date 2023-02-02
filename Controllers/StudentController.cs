@@ -73,7 +73,6 @@ namespace UsingEntityFramework.Controllers
                 }
             }
 
-
             Console.Write("All students listed. Press a key to return to main menu.");
             Console.ReadKey();
             MainController.RunMainMenu();
