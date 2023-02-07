@@ -32,7 +32,7 @@ Nuget packages:
 + Learnt to separate files and have a clear file structure
 
 ### Run locally
-To create a replica of the DB run [this script](https://gist.github.com/qvarnstr0m/faedfabdf9161ea0dae4eaa73028cfb9) in SSMS.  
+To create a replica of the DB run [this script](https://gist.github.com/qvarnstr0m/a17e3164b53ab7816055f5f5dd8a73e9) in SSMS.  
   
   Make sure you have dotnet installed.  
     
