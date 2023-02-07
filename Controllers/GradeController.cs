@@ -4,6 +4,7 @@ namespace UsingEntityFramework.Controllers
 {
     internal class GradeController
     {
+        // Method to list all grades set last month
         internal static void ListLastMonthGrades()
         {
             Console.Clear();

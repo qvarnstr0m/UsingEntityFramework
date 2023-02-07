@@ -4,9 +4,10 @@ namespace UsingEntityFramework.Controllers
 {
     internal class AdressController
     {
+        // Method to both list adresses and return a Dictionary with them with related id
         internal static Dictionary<int, string> ListGetAdresses()
         {
-            //Dictionary to hold available adresses
+            // Dictionary to hold available adresses
             Dictionary<int, string> adressDict = new Dictionary<int, string>();
 
             using (UnitOfWork unitOfWork = new UnitOfWork(new FbgGymnDbContext()))

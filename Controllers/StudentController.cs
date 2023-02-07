@@ -5,6 +5,7 @@ namespace UsingEntityFramework.Controllers
 {
     internal class StudentController
     {
+        // Method to list all students
         internal static void ListAllStudents()
         {
             Console.Clear();
@@ -45,6 +46,7 @@ namespace UsingEntityFramework.Controllers
             MainController.RunMainMenu();
         }
 
+        // Method to list all students in a certain class
         internal static void ListStudentsInClass()
         {
             Console.Clear();
@@ -78,6 +80,7 @@ namespace UsingEntityFramework.Controllers
             MainController.RunMainMenu();
         }
 
+        // Method to add a student to the DB
         internal static void AddStudent()
         {
             Console.Clear();

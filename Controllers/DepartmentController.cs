@@ -9,6 +9,7 @@ namespace UsingEntityFramework.Controllers
 {
     internal class DepartmentController
     {
+        // Methód to list departments with number of teachers
         internal static void ListNoDepartmentStaff()
         {
             Console.Clear();

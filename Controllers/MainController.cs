@@ -2,6 +2,7 @@
 {
     internal class MainController
     {
+        // Method that gets called on application start and handles UI menu
         internal static void RunMainMenu()
         {
             Console.Clear();
