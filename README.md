@@ -16,6 +16,8 @@ The application should have features such as a menu to select data, ability to s
 ### Tech stack
 + .NET 6.0  
 + C# 10.0  
++ Microsoft SQL Server  
++ Microsoft SQL Server Managment System  
   
 Nuget packages:  
 + Microsoft.Entity.FrameworkCore.V. 7.0.2  
