@@ -5,6 +5,7 @@ namespace UsingEntityFramework.Controllers
     internal class CourseController
     {
         // This method does not yet implement the repository pattern
+        // Method to list grade statistics from all courses
         internal static void ListGradeStats()
         {
             Console.Clear();
@@ -27,6 +28,7 @@ namespace UsingEntityFramework.Controllers
             MainController.RunMainMenu();
         }
 
+        // Method to list active courses
         internal static void ListActiveCourses()
         {
             Console.Clear();

@@ -4,6 +4,7 @@ namespace UsingEntityFramework.Controllers
 {
     internal class ClassController
     {
+        // Method to both list classes and return a Dictionary with them and related ids
         internal static Dictionary<int, string> ListGetClasses()
         {
             //Dictionary to hold available classes
