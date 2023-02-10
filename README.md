@@ -36,7 +36,7 @@ Nuget packages:
 ### Run locally
 To create a replica of the DB run [this script](https://gist.github.com/qvarnstr0m/a17e3164b53ab7816055f5f5dd8a73e9) in SSMS.  
   
-  Make sure you have dotnet installed.  
+  Make sure you have [dotnet installed](https://dotnet.microsoft.com/en-us/download).  
     
   Note that you will probably have to change the path to your local DB in Data/FbgGymnDbContext.cs  
     
